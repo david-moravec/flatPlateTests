@@ -1,0 +1,116 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+vertices
+(
+	// domain front
+    (-0.05 0 0)       	// 0
+    (0 0 0)		// 1
+    (-0.05 0.175 0)	// 2
+    (0 0.175 0)		// 3
+    (2.9 0.175 0)	// 4
+    (2.9 0 0)		// 5
+
+	// domain back
+    (-0.05 0 0.1)     	// 6
+    (0 0 0.1)		// 7 
+    (-0.05 0.175 0.1)	// 8
+    (0 0.175 0.1)	// 9
+    (2.9 0.175 0.1)	// 10
+    (2.9 0 0.1)	// 11
+	
+
+);
+
+blocks
+(
+    hex (0 1 3 2 6 7 9 8) (20 105 1)  simpleGrading (1 400 1)		// block infront of trailing edge
+    hex (1 5 4 3 7 11 10 9) (615 105 1) simpleGrading (100 400 1)	// block above the plate
+);
+
+edges
+(
+);
+
+boundary
+(
+    flatPlate
+    {
+        type wall;
+        faces
+        (
+            (1 5 11 7)		
+        );
+    }
+
+    symBoundTop
+    {
+        type symmetryPlane;
+        faces
+        (
+           (2 3 9 8)
+           (3 4 10 9)
+        );
+    }
+
+    symBoundBottom
+    {
+	type symmetryPlane;
+	faces
+	(
+	    (0 6 7 1)
+	);
+    }
+
+    frontAndBack
+    {
+        type empty;
+        faces
+        (
+            (0 1 3 2)
+            (1 5 4 3)
+
+            (6 7 9 8)
+            (7 11 10 9)
+        );
+    }
+
+    inlet
+    {
+	type patch;
+	faces
+	(
+		(0 6 8 2)
+	);
+    }
+
+    outlet
+    {
+	type patch;
+	faces
+	(
+		(5 11 10 4)
+	);
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
