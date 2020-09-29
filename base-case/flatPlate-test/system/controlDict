@@ -15,7 +15,8 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 libs (
-    "WrayAgarval.so"
+    "myIncompressibleTurbulenceModels.so"
+    "myCompressibleTurbulenceModels.so"
 );
 
 application     simpleFoam;
@@ -36,7 +37,7 @@ writeInterval   1000;
 
 purgeWrite      1;
 
-writeFormat     banana;
+writeFormat     ascii;
 
 writePrecision  6;
 
