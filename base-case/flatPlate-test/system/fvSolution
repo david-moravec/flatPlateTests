@@ -25,7 +25,7 @@ solvers
         smoother        GaussSeidel;
     }
 
-    "(U|k|epsilon|omega|f|v2|R)"
+    "(U|k|epsilon|omega|gamma|f|v2|R)"
     {
         solver          smoothSolver;
         smoother        symGaussSeidel;
@@ -43,20 +43,16 @@ SIMPLE
     {
         p               1e-9;
         U               1e-9;
-        "(k|epsilon|omega|f|v2|R)" 1e-15;
+        "(k|epsilon|omega|gamma|f|v2)" 1e-15;
     }
 }
 
 relaxationFactors
 {
-    fields
-    {
-	p		0.3;
-    }
     equations
     {
-        U               0.7; // 0.9 is more stable but 0.95 more convergent
-        ".*"            0.7; // 0.9 is more stable but 0.95 more convergent
+        U               0.9; // 0.9 is more stable but 0.95 more convergent
+        ".*"            0.9; // 0.9 is more stable but 0.95 more convergent
     }
 }
 
