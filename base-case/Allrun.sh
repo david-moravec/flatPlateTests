@@ -1,5 +1,16 @@
 #!/bin/bash
 #first argument is the name of the folder case (T3A, T3B, T3A-) 
+function plotResiduals() {
+	sleep 15
+	gnuplot residuals.gp &
+	GNUPLOT_PID=$!
+
+	while pgrep -x "simpleFoam" > /dev/null; do
+		:
+	done
+	kill $GNUPLOT_PID
+}
+
 echo "Enter number for starting a given case"
 echo "number 1 for T3A"
 echo "number 2 for T3B"
@@ -37,20 +48,21 @@ for i in "${caseType[@]}"; do
 	cp -r ${i}.0 "0" 
 
 	blockMesh
-	simpleFoam > log.simpleFoam &
-	sleep 5
-	gnuplot residuals.gp &
-	GNUPLOT_PID=$!
 
-	while pgrep -x "simpleFoam" > /dev/null; do
-		:
-	done
-	kill $GNUPLOT_PID
-
+    if [ $1 == 'parallel' ]; then
+        decomposePar -force
+	    mpirun -np 2 simpleFoam -parallel > log.simpleFoam &
+        plotResiduals
+        reconstructPar
+    else 
+        simpleFoam > log.simpleFoam &
+        plotResiduals
+    fi
 	postProcess -func sampleU
 	postProcess -func sampleTauW
 
 	../compute-Cf-Rex.sh $i $caseFold > Cf-Rex-${i}.dat
+    head -n -1 Cf-Rex-${i}.dat > temp.dat; mv temp.dat Cf-Rex-${i}.dat
 
 	cd ../scripts
 
