@@ -12,4 +12,5 @@ plot "< cat ../".caseFold."/log.simpleFoam | grep 'Solving for Ux' | cut -d' ' -
 "< cat ../".caseFold."/log.simpleFoam | grep 'Solving for omega' | cut -d' ' -f9 | tr -d ','" title 'omega' with lines,\
 "< cat ../".caseFold."/log.simpleFoam | grep 'Solving for k' | cut -d' ' -f9 | tr -d ','" title 'k' with lines,\
 "< cat ../".caseFold."/log.simpleFoam | grep 'Solving for p' | cut -d' ' -f9 | tr -d ','" title 'p' with lines,\
-"< cat ../".caseFold."/log.simpleFoam | grep 'Solving for R' | cut -d' ' -f9 | tr -d ','" title 'R' with lines
+"< cat ../".caseFold."/log.simpleFoam | grep 'Solving for R' | cut -d' ' -f9 | tr -d ','" title 'R' with lines, \
+"< cat ../".caseFold."/log.simpleFoam | grep 'Solving for gamma' | cut -d' ' -f9 | tr -d ','" title 'gamma' with lines
