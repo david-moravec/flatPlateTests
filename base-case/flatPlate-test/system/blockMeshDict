@@ -39,8 +39,8 @@ vertices
 
 blocks
 (
-    hex (0 1 3 2 6 7 9 8) (20 10 1)  simpleGrading (1 40 1)		// block infront of trailing edge
-    hex (1 5 4 3 7 11 10 9) (60 10 1) simpleGrading (10 40 1)	// block above the plate
+    hex (0 1 3 2 6 7 9 8) (20 100 1)  simpleGrading (1 800 1)		// block infront of trailing edge
+    hex (1 5 4 3 7 11 10 9) (600 100 1) simpleGrading (200 800 1)	// block above the plate
 );
 
 edges
