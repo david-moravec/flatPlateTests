@@ -24,7 +24,7 @@ boundaryField
     inlet
     {
         type            fixedValue;
-        value           438.1;
+        value           uniform 438.1;
     }
 
     outlet
@@ -32,23 +32,28 @@ boundaryField
         type            zeroGradient;
     }
 
-    symBoundTop
+    top
     {
-        type            symmetryPlane;
+        type            zeroGradient;
     }
 
-    symBoundBottom
+    bottom
     {
-        type            symmetryPlane;
+        type            zeroGradient;
     }
 
     flatPlate
     {
         type            fixedValue;
-        value           1e7;
+        value           uniform 1e7;
     }
 
-    frontAndBack
+    back
+    {
+        type            empty;
+    }
+
+    front
     {
         type            empty;
     }

@@ -31,14 +31,14 @@ boundaryField
         value           uniform 0;
     }
 
-    symBoundTop
+    top
     {
-        type            symmetryPlane;
+        type            zeroGradient;
     }
 
-    symBoundBottom
+    bottom
     {
-        type            symmetryPlane;
+        type            zeroGradient;
     }
 
     flatPlate
@@ -46,7 +46,12 @@ boundaryField
         type            zeroGradient;
     }
 
-    frontAndBack
+    back
+    {
+        type            empty;
+    }
+
+    front
     {
         type            empty;
     }

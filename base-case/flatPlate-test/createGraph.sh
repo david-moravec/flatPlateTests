@@ -3,6 +3,9 @@ i=$1
 caseFold=$2
 turbModel=$3
 
+postProcess -func sampleU
+postProcess -func sampleTauW
+
 ../compute-Cf-Rex.sh $i $caseFold > Cf-Rex-${i}.dat
 head -n -1 Cf-Rex-${i}.dat > temp.dat; mv temp.dat Cf-Rex-${i}.dat
 
@@ -23,5 +26,3 @@ cp "./Cf-Rex-${i}.png" "${resultFold}/Cf-Rex-${i}.png"
 cp "./Cf-Rex-${i}.png" "${resultFold}/../../Cf-Rex-${i}.png"
 cp "./Cf-Rex-${i}.dat" "${resultFold}/data.dat"
 cp "./residuals-${i}.png" "${resultFold}/../residuals-${i}.png"
-
-cd ../
