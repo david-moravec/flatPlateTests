@@ -3,6 +3,14 @@ i=$1
 caseFold=$2
 turbModel=$3
 
+if [ $i == 'T3A-minus' ];  then
+    xDown=1000000
+    xUp=3000000
+else
+    xDown=1000
+    xUp=1000000
+fi
+
 postProcess -func sampleU
 postProcess -func sampleTauW
 
@@ -12,7 +20,7 @@ head -n -1 Cf-Rex-${i}.dat > temp.dat; mv temp.dat Cf-Rex-${i}.dat
 cd ../scripts
 
 gnuplot -e "caseFold='$caseFold'; type='${i}'; turbModel='${turbModel}'" saveResiduals.gp 
-gnuplot -e "caseFold='$caseFold'; type='${i}'; turbModel='${turbModel}'" Cf-Rex.gp 
+gnuplot -e "caseFold='$caseFold'; type='${i}'; turbModel='${turbModel}'; x-down=${xDown}; x-up=${xUp}" Cf-Rex.gp 
 
 cd ../$caseFold
 

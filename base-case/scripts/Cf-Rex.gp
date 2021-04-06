@@ -6,7 +6,7 @@ set xlabel "Rex"
 set ylabel "Cf" offset 2
 set logscale x
 set logscale y
-set xrange [1000:1e6]
+set xrange [x-down:x-up]
 set yrange [1e-3:3e-2]
 set grid
 
