@@ -36,7 +36,7 @@ head -n32 boundary >> boundary-tmp
 tail -n +27 boundary >> boundary-tmp
 
 sed -i '0,/auto0/{s/auto0/bottom/}' boundary-tmp
-sed -i '0,/auto0/{s/auto0/flatplate/}' boundary-tmp
+sed -i '0,/auto0/{s/auto0/flatPlate/}' boundary-tmp
 sed -i '0,/635/{s/635/35/}' boundary-tmp
 sed -i '0,/635/{s/635/600/}' boundary-tmp
 sed -i '0,/patch/{s/patch/wall/}' boundary-tmp
